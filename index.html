@@ -5,46 +5,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>You're Invited</title>
+  <meta name="theme-color" content="#F6F1E9">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <title>Invitation</title>
 
   <style>
-
-    /* =====================================================
-       COLOR PALETTE
-       ===================================================== */
+    /* =========================================================
+       IOS-INSPIRED CASUAL CHIC
+       Palette:
+       Cream • Wine • Black • White
+       ========================================================= */
 
     :root {
-      --cream: #F5EFE6;
-      --cream-dark: #E9DED0;
+      --cream: #F6F1E9;
+      --cream-2: #EEE6DB;
 
       --white: #FFFFFF;
+      --black: #111111;
+      --black-soft: #3A3837;
 
-      --black: #171516;
-      --black-soft: #292526;
+      --wine: #6D1F35;
+      --wine-light: #8A3A50;
+      --wine-soft: #F2E3E8;
 
-      --wine: #6E1F35;
-      --wine-dark: #501426;
-      --wine-light: #8A354D;
+      --gray: #7A7673;
+      --gray-light: #AEA8A3;
 
-      --gray: #77706D;
-      --border: #DED4CA;
+      --line: rgba(17, 17, 17, 0.09);
+
+      --shadow:
+        0 18px 50px rgba(30, 20, 20, 0.08);
+
+      --radius-large: 30px;
+      --radius-medium: 20px;
+      --radius-small: 15px;
     }
 
 
-    /* =====================================================
+    /* =========================================================
        RESET
-       ===================================================== */
+       ========================================================= */
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html {
@@ -54,224 +60,270 @@
     body {
       min-height: 100vh;
 
-      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
 
       color: var(--black);
 
-      background: var(--cream);
+      /*
+        Apple-style system font stack.
+        On Apple devices it uses SF Pro automatically.
+      */
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      -webkit-font-smoothing: antialiased;
 
       overflow-x: hidden;
     }
 
 
-    /* =====================================================
-       SUBTLE BACKGROUND
-       ===================================================== */
-
-    body::before {
-      content: "";
-
-      position: fixed;
-
-      width: 450px;
-      height: 450px;
-
-      border-radius: 50%;
-
-      background: rgba(110, 31, 53, 0.035);
-
-      top: -220px;
-      right: -180px;
-
-      pointer-events: none;
-    }
-
-    body::after {
-      content: "";
-
-      position: fixed;
-
-      width: 350px;
-      height: 350px;
-
-      border-radius: 50%;
-
-      background: rgba(0, 0, 0, 0.025);
-
-      bottom: -180px;
-      left: -150px;
-
-      pointer-events: none;
+    button,
+    input {
+      font: inherit;
     }
 
 
-    /* =====================================================
-       MAIN
-       ===================================================== */
+    button {
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+    }
 
-    .container {
 
-      width: 100%;
+    /* =========================================================
+       BACKGROUND
+       ========================================================= */
+
+    .background {
+
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      overflow: hidden;
+
+      z-index: -1;
+    }
+
+
+    .blur-shape {
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      filter: blur(70px);
+
+      opacity: 0.45;
+    }
+
+
+    .blur-one {
+
+      width: 300px;
+      height: 300px;
+
+      background: rgba(109, 31, 53, 0.07);
+
+      top: -130px;
+      right: -100px;
+    }
+
+
+    .blur-two {
+
+      width: 250px;
+      height: 250px;
+
+      background: rgba(255, 255, 255, 0.75);
+
+      bottom: -100px;
+      left: -100px;
+    }
+
+
+    /* =========================================================
+       APP
+       ========================================================= */
+
+    .app {
+
       min-height: 100vh;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
-      padding: 30px 20px;
+      padding: 22px;
     }
 
 
-    /* =====================================================
-       PAGE
-       ===================================================== */
-
-    .page {
+    .screen {
 
       width: 100%;
-      max-width: 520px;
+
+      max-width: 430px;
 
       display: none;
 
-      animation: fadeIn 0.45s ease;
+      animation: screenIn 0.45s cubic-bezier(.22,.61,.36,1);
     }
 
-    .page.active {
+
+    .screen.active {
       display: block;
     }
 
-    @keyframes fadeIn {
+
+    @keyframes screenIn {
 
       from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(18px) scale(0.985);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
 
     }
 
 
-    /* =====================================================
-       CARD
-       ===================================================== */
+    /* =========================================================
+       IOS CARD
+       ========================================================= */
 
     .card {
 
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.86);
 
-      padding: 55px 45px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
 
-      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
 
-      border-radius: 4px;
+      padding: 32px 25px;
 
-      box-shadow:
-        0 20px 60px rgba(40, 25, 25, 0.07);
+      box-shadow: var(--shadow);
 
-      position: relative;
-
-      overflow: hidden;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
 
-    /* Small wine line */
+    /* =========================================================
+       TOP NAV / HEADER
+       ========================================================= */
 
-    .card::before {
-
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      left: 0;
-
-      width: 100%;
-      height: 4px;
-
-      background: var(--wine);
-    }
-
-
-    /* =====================================================
-       SMALL LABEL
-       ===================================================== */
-
-    .eyebrow {
+    .top {
 
       display: flex;
 
       align-items: center;
 
-      gap: 10px;
+      justify-content: space-between;
 
-      margin-bottom: 22px;
-
-      color: var(--wine);
-
-      font-size: 11px;
-
-      font-weight: 700;
-
-      letter-spacing: 2.5px;
-
-      text-transform: uppercase;
+      margin-bottom: 30px;
     }
 
-    .eyebrow::after {
 
-      content: "";
+    .brand {
 
-      width: 35px;
-      height: 1px;
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      letter-spacing: -0.2px;
+    }
+
+
+    .brand-dot {
+
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
 
       background: var(--wine);
     }
 
 
-    /* =====================================================
+    .page-number {
+
+      color: var(--gray);
+
+      font-size: 12px;
+
+      font-weight: 500;
+    }
+
+
+    /* =========================================================
        TYPOGRAPHY
-       ===================================================== */
+       ========================================================= */
+
+    .eyebrow {
+
+      color: var(--wine);
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      margin-bottom: 10px;
+
+      letter-spacing: -0.2px;
+    }
+
 
     h1 {
 
-      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 10vw, 54px);
 
-      font-size: clamp(42px, 10vw, 64px);
+      line-height: 1.04;
 
-      line-height: 1.02;
+      letter-spacing: -2px;
 
-      font-weight: 500;
-
-      letter-spacing: -1.5px;
-
-      margin-bottom: 20px;
-    }
-
-    h2 {
-
-      font-family: "Playfair Display", serif;
-
-      font-size: clamp(35px, 8vw, 48px);
-
-      line-height: 1.08;
-
-      font-weight: 500;
-
-      letter-spacing: -1px;
+      font-weight: 700;
 
       margin-bottom: 16px;
     }
 
-    .italic {
-      font-style: italic;
 
+    h2 {
+
+      font-size: clamp(32px, 8vw, 43px);
+
+      line-height: 1.08;
+
+      letter-spacing: -1.5px;
+
+      font-weight: 700;
+
+      margin-bottom: 14px;
+    }
+
+
+    .wine {
       color: var(--wine);
     }
+
 
     .description {
 
@@ -279,166 +331,264 @@
 
       font-size: 15px;
 
-      line-height: 1.8;
+      line-height: 1.65;
 
-      max-width: 390px;
+      letter-spacing: -0.15px;
 
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
 
-    /* =====================================================
-       BUTTONS
-       ===================================================== */
+    /* =========================================================
+       IOS PILL BUTTON
+       ========================================================= */
 
-    .button-row {
+    .button {
 
-      display: flex;
+      width: 100%;
 
-      align-items: center;
+      min-height: 52px;
 
-      gap: 12px;
+      padding: 14px 20px;
 
-      flex-wrap: wrap;
-    }
+      border-radius: 999px;
 
-    button {
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 14px;
+      font-size: 16px;
 
       font-weight: 600;
 
-      border: none;
-
-      cursor: pointer;
+      letter-spacing: -0.25px;
 
       transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        color 0.2s ease;
+        transform 0.15s ease,
+        opacity 0.15s ease,
+        background 0.15s ease;
     }
 
-    .primary {
 
-      padding: 14px 25px;
+    .button:active {
+
+      transform: scale(0.97);
+
+      opacity: 0.8;
+    }
+
+
+    .button-primary {
 
       background: var(--black);
 
       color: var(--white);
-
-      border: 1px solid var(--black);
     }
 
-    .primary:hover {
+
+    .button-primary:hover {
+
+      background: var(--wine);
+    }
+
+
+    .button-wine {
 
       background: var(--wine);
 
-      border-color: var(--wine);
-
-      transform: translateY(-2px);
+      color: var(--white);
     }
 
-    .secondary {
 
-      padding: 14px 25px;
+    .button-wine:hover {
 
-      background: transparent;
+      background: var(--wine-light);
+    }
+
+
+    .button-secondary {
+
+      background: var(--cream-2);
 
       color: var(--black);
-
-      border: 1px solid var(--border);
-    }
-
-    .secondary:hover {
-
-      border-color: var(--black);
-
-      transform: translateY(-2px);
     }
 
 
-    /* =====================================================
-       NO BUTTON
-       ===================================================== */
+    .button-secondary:hover {
 
-    .no-area {
+      background: #E4DBD0;
+    }
+
+
+    .button-row {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 10px;
+    }
+
+
+    /* =========================================================
+       IOS-LIKE QUESTION
+       ========================================================= */
+
+    .question-box {
+
+      padding: 20px;
+
+      border-radius: 22px;
+
+      background: var(--cream);
+
+      margin-bottom: 18px;
+
+      text-align: center;
+    }
+
+
+    .question-mark {
+
+      width: 48px;
+      height: 48px;
+
+      margin: 0 auto 14px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: var(--wine);
+
+      color: white;
+
+      font-size: 22px;
+
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       MOVING NO BUTTON
+       ========================================================= */
+
+    .no-container {
 
       position: relative;
 
-      width: 90px;
-
-      height: 45px;
+      min-height: 52px;
     }
+
 
     #noButton {
 
       position: absolute;
 
-      left: 0;
-      top: 0;
-
-      white-space: nowrap;
-    }
-
-
-    /* =====================================================
-       FORM
-       ===================================================== */
-
-    .form-section {
-
-      margin-bottom: 22px;
-    }
-
-    label {
-
-      display: block;
-
-      font-size: 12px;
-
-      font-weight: 700;
-
-      letter-spacing: 0.5px;
-
-      margin-bottom: 8px;
-
-      text-transform: uppercase;
-    }
-
-    input {
+      inset: 0;
 
       width: 100%;
+    }
 
-      padding: 14px 15px;
+
+    /* =========================================================
+       IOS FORM GROUP
+       ========================================================= */
+
+    .form-list {
 
       background: var(--cream);
 
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      margin-bottom: 20px;
+    }
+
+
+    .form-item {
+
+      padding: 4px 17px;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+
+    .form-item:last-child {
+      border-bottom: 0;
+    }
+
+
+    .form-label {
+
+      display: block;
+
+      color: var(--gray);
+
+      font-size: 12px;
+
+      font-weight: 500;
+
+      padding-top: 12px;
+
+      margin-bottom: 3px;
+    }
+
+
+    input[type="date"],
+    input[type="time"] {
+
+      width: 100%;
+
+      padding: 4px 0 12px;
+
+      border: 0;
+
+      outline: 0;
+
+      background: transparent;
+
       color: var(--black);
 
-      border: 1px solid var(--border);
+      font-size: 17px;
 
-      border-radius: 2px;
+      font-weight: 500;
 
-      outline: none;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 14px;
-
-      transition: border 0.2s ease;
-    }
-
-    input:focus {
-
-      border-color: var(--wine);
+      letter-spacing: -0.3px;
     }
 
 
-    /* =====================================================
+    /* =========================================================
        ACTIVITIES
-       ===================================================== */
+       ========================================================= */
+
+    .section-title {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 12px;
+    }
+
+
+    .section-title strong {
+
+      font-size: 15px;
+
+      letter-spacing: -0.2px;
+    }
+
+
+    .section-title span {
+
+      color: var(--gray);
+
+      font-size: 12px;
+    }
+
 
     .activities {
 
@@ -448,61 +598,197 @@
 
       gap: 10px;
 
-      margin: 25px 0 30px;
+      margin-bottom: 22px;
     }
+
 
     .activity {
 
-      padding: 17px 15px;
+      min-height: 105px;
+
+      padding: 16px;
+
+      text-align: left;
+
+      border-radius: 20px;
 
       background: var(--cream);
 
-      border: 1px solid var(--border);
-
-      cursor: pointer;
+      border: 1.5px solid transparent;
 
       transition:
-        background 0.2s ease,
-        border 0.2s ease,
-        transform 0.2s ease;
+        transform 0.15s ease,
+        border 0.15s ease,
+        background 0.15s ease;
     }
 
-    .activity:hover {
 
-      transform: translateY(-2px);
+    .activity:active {
 
-      border-color: var(--black);
+      transform: scale(0.97);
     }
+
 
     .activity.selected {
 
-      background: var(--wine);
+      background: var(--wine-soft);
 
       border-color: var(--wine);
-
-      color: var(--white);
     }
+
 
     .activity-icon {
 
-      font-size: 20px;
+      font-size: 23px;
 
-      margin-bottom: 8px;
+      margin-bottom: 15px;
     }
+
 
     .activity-name {
 
-      font-size: 13px;
+      font-size: 14px;
+
+      font-weight: 600;
+
+      letter-spacing: -0.25px;
+    }
+
+
+    .activity-check {
+
+      float: right;
+
+      width: 19px;
+      height: 19px;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: var(--wine);
+
+      color: white;
+
+      font-size: 11px;
+    }
+
+
+    .activity.selected .activity-check {
+      display: flex;
+    }
+
+
+    /* =========================================================
+       SUMMARY
+       ========================================================= */
+
+    .summary {
+
+      background: var(--cream);
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      margin: 20px 0;
+    }
+
+
+    .summary-item {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 15px 17px;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+
+    .summary-item:last-child {
+      border-bottom: 0;
+    }
+
+
+    .summary-label {
+
+      color: var(--gray);
+
+      font-size: 12px;
+
+      font-weight: 500;
+    }
+
+
+    .summary-value {
+
+      max-width: 230px;
+
+      text-align: right;
+
+      font-size: 14px;
 
       font-weight: 600;
     }
 
 
-    /* =====================================================
-       POPUP
-       ===================================================== */
+    /* =========================================================
+       SUCCESS
+       ========================================================= */
 
-    .popup-overlay {
+    .success-icon {
+
+      width: 62px;
+      height: 62px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 22px;
+
+      border-radius: 50%;
+
+      background: var(--wine);
+
+      color: white;
+
+      font-size: 25px;
+
+      animation: success 0.55s cubic-bezier(.22,1.3,.36,1);
+    }
+
+
+    @keyframes success {
+
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+    }
+
+
+    /* =========================================================
+       POPUP — IOS SHEET STYLE
+       ========================================================= */
+
+    .overlay {
 
       position: fixed;
 
@@ -510,200 +796,123 @@
 
       display: none;
 
-      align-items: center;
+      align-items: flex-end;
 
       justify-content: center;
 
-      padding: 20px;
+      background: rgba(17, 17, 17, 0.32);
 
-      background: rgba(23, 21, 22, 0.55);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
 
       z-index: 100;
     }
 
-    .popup-overlay.show {
+
+    .overlay.show {
       display: flex;
     }
 
-    .popup {
 
-      width: 100%;
+    .sheet {
 
-      max-width: 390px;
+      width: min(430px, 100%);
 
-      background: var(--white);
+      background: rgba(255,255,255,0.96);
 
-      padding: 35px;
+      border-radius: 30px 30px 0 0;
 
-      border-top: 4px solid var(--wine);
+      padding: 12px 22px 30px;
 
-      box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+      box-shadow:
+        0 -15px 50px rgba(0,0,0,0.12);
 
-      animation: popupIn 0.25s ease;
+      animation: sheetUp 0.35s cubic-bezier(.22,.61,.36,1);
     }
 
-    @keyframes popupIn {
+
+    @keyframes sheetUp {
 
       from {
-        opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(100%);
       }
 
       to {
-        opacity: 1;
         transform: translateY(0);
       }
 
     }
 
-    .popup h3 {
 
-      font-family: "Playfair Display", serif;
+    .handle {
 
-      font-size: 28px;
+      width: 38px;
+      height: 4px;
 
-      margin-bottom: 12px;
+      border-radius: 999px;
+
+      background: #D0CBC7;
+
+      margin: 0 auto 22px;
     }
 
-    .popup p {
+
+    .sheet h3 {
+
+      font-size: 24px;
+
+      letter-spacing: -0.7px;
+
+      margin-bottom: 9px;
+    }
+
+
+    .sheet p {
 
       color: var(--gray);
 
       font-size: 14px;
 
-      line-height: 1.7;
+      line-height: 1.6;
 
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
 
-    /* =====================================================
-       SUMMARY
-       ===================================================== */
-
-    .summary {
-
-      margin: 25px 0 30px;
-
-      border-top: 1px solid var(--border);
-    }
-
-    .summary-row {
-
-      display: flex;
-
-      justify-content: space-between;
-
-      gap: 20px;
-
-      padding: 14px 0;
-
-      border-bottom: 1px solid var(--border);
-
-      font-size: 13px;
-    }
-
-    .summary-label {
-
-      color: var(--gray);
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.5px;
-
-      font-size: 11px;
-
-      font-weight: 700;
-    }
-
-    .summary-value {
-
-      text-align: right;
-
-      font-weight: 600;
-
-      max-width: 250px;
-    }
-
-
-    /* =====================================================
-       SUCCESS
-       ===================================================== */
-
-    .success-mark {
-
-      width: 55px;
-      height: 55px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      background: var(--wine);
-
-      color: var(--white);
-
-      font-size: 22px;
-
-      margin-bottom: 25px;
-    }
-
-
-    /* =====================================================
-       FOOTER
-       ===================================================== */
-
-    .footer {
-
-      margin-top: 25px;
-
-      color: var(--gray);
-
-      font-size: 11px;
-
-      letter-spacing: 1px;
-
-      text-transform: uppercase;
-    }
-
-
-    /* =====================================================
+    /* =========================================================
        MOBILE
-       ===================================================== */
+       ========================================================= */
 
-    @media (max-width: 600px) {
+    @media (max-width: 450px) {
 
-      .container {
-        padding: 15px;
+      .app {
+        padding: 14px;
       }
 
       .card {
-        padding: 42px 25px;
+        padding: 28px 20px;
+        border-radius: 27px;
       }
 
       h1 {
-        font-size: 46px;
+        font-size: 44px;
       }
 
       h2 {
-        font-size: 38px;
-      }
-
-      .activities {
-        grid-template-columns: 1fr 1fr;
+        font-size: 36px;
       }
 
     }
 
-    @media (max-width: 380px) {
 
-      .activities {
+    @media (max-width: 350px) {
+
+      .button-row {
         grid-template-columns: 1fr;
       }
 
-      .button-row {
-        align-items: stretch;
+      .activities {
+        grid-template-columns: 1fr;
       }
 
     }
@@ -715,84 +924,149 @@
 <body>
 
 
-  <div class="container">
+  <!-- =======================================================
+       BACKGROUND
+       ======================================================= -->
+
+  <div class="background">
+
+    <div class="blur-shape blur-one"></div>
+
+    <div class="blur-shape blur-two"></div>
+
+  </div>
 
 
-    <!-- =================================================
-         PAGE 1 — INTRO
-         ================================================= -->
 
-    <section class="page active" id="page1">
+  <main class="app">
+
+
+    <!-- =====================================================
+         SCREEN 1
+         ===================================================== -->
+
+    <section
+      class="screen active"
+      id="screen1"
+    >
 
       <div class="card">
 
-        <div class="eyebrow">
-          An invitation
+        <div class="top">
+
+          <div class="brand">
+
+            <span class="brand-dot"></span>
+
+            Invitation
+
+          </div>
+
+          <div class="page-number">
+            01
+          </div>
+
         </div>
+
+
+        <div class="eyebrow">
+          A little something
+        </div>
+
 
         <h1>
           Hey,<br>
-          I've got a little <span class="italic">idea.</span>
+          I've got an <span class="wine">idea.</span>
         </h1>
 
+
         <p class="description">
-          Nothing complicated. Just a small invitation
-          and a chance to spend some time together.
+          Nothing complicated.
+          Just a little invitation
+          for some time together.
         </p>
 
-        <button
-          class="primary"
-          onclick="goToPage(2)"
-        >
-          Let's see →
-        </button>
 
-        <div class="footer">
-          Made just for you
-        </div>
+        <button
+          class="button button-primary"
+          onclick="goToScreen(2)"
+        >
+          Let's see
+        </button>
 
       </div>
 
     </section>
 
 
-    <!-- =================================================
-         PAGE 2 — QUESTION
-         ================================================= -->
 
-    <section class="page" id="page2">
+    <!-- =====================================================
+         SCREEN 2
+         ===================================================== -->
+
+    <section
+      class="screen"
+      id="screen2"
+    >
 
       <div class="card">
 
-        <div class="eyebrow">
-          The question
+        <div class="top">
+
+          <div class="brand">
+
+            <span class="brand-dot"></span>
+
+            Invitation
+
+          </div>
+
+          <div class="page-number">
+            02
+          </div>
+
         </div>
 
-        <h2>
-          Want to <span class="italic">hang out?</span>
-        </h2>
 
-        <p class="description">
-          Coffee, food, a walk, a movie...
-          We can figure out the rest.
-        </p>
+        <div class="question-box">
+
+          <div class="question-mark">
+            ?
+          </div>
+
+          <div class="eyebrow">
+            One question
+          </div>
+
+          <h2>
+            Want to <span class="wine">hang out?</span>
+          </h2>
+
+          <p class="description">
+            Coffee, food, a walk,
+            or whatever sounds good.
+          </p>
+
+        </div>
+
 
         <div class="button-row">
 
           <button
-            class="primary"
-            onclick="goToPage(3)"
+            class="button button-wine"
+            onclick="goToScreen(3)"
           >
-            Sure, why not
+            Sure
           </button>
 
-          <div class="no-area">
+
+          <div class="no-container">
 
             <button
               id="noButton"
-              class="secondary"
+              class="button button-secondary"
             >
-              No
+              Maybe not
             </button>
 
           </div>
@@ -804,60 +1078,96 @@
     </section>
 
 
-    <!-- =================================================
-         PAGE 3 — DATE & TIME
-         ================================================= -->
 
-    <section class="page" id="page3">
+    <!-- =====================================================
+         SCREEN 3
+         ===================================================== -->
+
+    <section
+      class="screen"
+      id="screen3"
+    >
 
       <div class="card">
 
-        <div class="eyebrow">
-          Let's plan
+        <div class="top">
+
+          <div class="brand">
+
+            <span class="brand-dot"></span>
+
+            Plan
+
+          </div>
+
+          <div class="page-number">
+            03
+          </div>
+
         </div>
 
+
+        <div class="eyebrow">
+          Pick a time
+        </div>
+
+
         <h2>
-          Pick a <span class="italic">time.</span>
+          When works <span class="wine">best?</span>
         </h2>
 
+
         <p class="description">
-          Choose whatever works best for you.
+          Choose a date and time
+          that feels convenient.
         </p>
 
 
-        <div class="form-section">
-
-          <label for="date">
-            Date
-          </label>
-
-          <input
-            type="date"
-            id="date"
-          >
-
-        </div>
+        <div class="form-list">
 
 
-        <div class="form-section">
+          <div class="form-item">
 
-          <label for="time">
-            Time
-          </label>
+            <label
+              class="form-label"
+              for="date"
+            >
+              DATE
+            </label>
 
-          <input
-            type="time"
-            id="time"
-          >
+            <input
+              type="date"
+              id="date"
+            >
+
+          </div>
+
+
+          <div class="form-item">
+
+            <label
+              class="form-label"
+              for="time"
+            >
+              TIME
+            </label>
+
+            <input
+              type="time"
+              id="time"
+            >
+
+          </div>
+
 
         </div>
 
 
         <button
-          class="primary"
+          class="button button-primary"
           onclick="continueToActivities()"
         >
-          Next →
+          Continue
         </button>
 
       </div>
@@ -865,25 +1175,62 @@
     </section>
 
 
-    <!-- =================================================
-         PAGE 4 — ACTIVITIES
-         ================================================= -->
 
-    <section class="page" id="page4">
+    <!-- =====================================================
+         SCREEN 4
+         ===================================================== -->
+
+    <section
+      class="screen"
+      id="screen4"
+    >
 
       <div class="card">
 
-        <div class="eyebrow">
-          The plan
+        <div class="top">
+
+          <div class="brand">
+
+            <span class="brand-dot"></span>
+
+            Plan
+
+          </div>
+
+          <div class="page-number">
+            04
+          </div>
+
         </div>
 
+
+        <div class="eyebrow">
+          Your choice
+        </div>
+
+
         <h2>
-          What are you <span class="italic">feeling?</span>
+          What sounds <span class="wine">good?</span>
         </h2>
 
+
         <p class="description">
-          Choose one or more. We'll make it work.
+          Pick anything you'd like to do.
+          You can choose more than one.
         </p>
+
+
+        <div class="section-title">
+
+          <strong>
+            Activities
+          </strong>
+
+          <span>
+            Select your favorites
+          </span>
+
+        </div>
 
 
         <div class="activities">
@@ -893,6 +1240,10 @@
             class="activity"
             onclick="toggleActivity(this, 'Coffee')"
           >
+
+            <span class="activity-check">
+              ✓
+            </span>
 
             <div class="activity-icon">
               ☕
@@ -905,10 +1256,15 @@
           </div>
 
 
+
           <div
             class="activity"
             onclick="toggleActivity(this, 'Walk')"
           >
+
+            <span class="activity-check">
+              ✓
+            </span>
 
             <div class="activity-icon">
               🚶
@@ -921,13 +1277,18 @@
           </div>
 
 
+
           <div
             class="activity"
             onclick="toggleActivity(this, 'Food')"
           >
 
+            <span class="activity-check">
+              ✓
+            </span>
+
             <div class="activity-icon">
-              🍽
+              🍽️
             </div>
 
             <div class="activity-name">
@@ -937,10 +1298,15 @@
           </div>
 
 
+
           <div
             class="activity"
             onclick="toggleActivity(this, 'Movie')"
           >
+
+            <span class="activity-check">
+              ✓
+            </span>
 
             <div class="activity-icon">
               🎬
@@ -953,10 +1319,15 @@
           </div>
 
 
+
           <div
             class="activity"
             onclick="toggleActivity(this, 'Photos')"
           >
+
+            <span class="activity-check">
+              ✓
+            </span>
 
             <div class="activity-icon">
               📷
@@ -969,10 +1340,15 @@
           </div>
 
 
+
           <div
             class="activity"
             onclick="toggleActivity(this, 'Games')"
           >
+
+            <span class="activity-check">
+              ✓
+            </span>
 
             <div class="activity-icon">
               🎮
@@ -989,10 +1365,10 @@
 
 
         <button
-          class="primary"
+          class="button button-primary"
           onclick="finishInvitation()"
         >
-          Confirm →
+          Confirm
         </button>
 
       </div>
@@ -1000,37 +1376,63 @@
     </section>
 
 
-    <!-- =================================================
-         PAGE 5 — FINAL
-         ================================================= -->
 
-    <section class="page" id="page5">
+    <!-- =====================================================
+         SCREEN 5
+         ===================================================== -->
+
+    <section
+      class="screen"
+      id="screen5"
+    >
 
       <div class="card">
 
-        <div class="success-mark">
+        <div class="top">
+
+          <div class="brand">
+
+            <span class="brand-dot"></span>
+
+            Done
+
+          </div>
+
+          <div class="page-number">
+            05
+          </div>
+
+        </div>
+
+
+        <div class="success-icon">
           ✓
         </div>
+
 
         <div class="eyebrow">
           Confirmed
         </div>
 
+
         <h1>
-          It's a <span class="italic">plan.</span>
+          It's a <span class="wine">plan.</span>
         </h1>
 
+
         <p class="description">
-          Everything's set. See you there.
+          Everything is set.
+          See you there.
         </p>
 
 
         <div class="summary">
 
-          <div class="summary-row">
+
+          <div class="summary-item">
 
             <span class="summary-label">
-              Date
+              DATE
             </span>
 
             <span
@@ -1043,10 +1445,10 @@
           </div>
 
 
-          <div class="summary-row">
+          <div class="summary-item">
 
             <span class="summary-label">
-              Time
+              TIME
             </span>
 
             <span
@@ -1059,10 +1461,10 @@
           </div>
 
 
-          <div class="summary-row">
+          <div class="summary-item">
 
             <span class="summary-label">
-              Plan
+              PLAN
             </span>
 
             <span
@@ -1074,14 +1476,15 @@
 
           </div>
 
+
         </div>
 
 
         <button
-          class="secondary"
+          class="button button-secondary"
           onclick="location.reload()"
         >
-          Start over
+          Start again
         </button>
 
       </div>
@@ -1089,23 +1492,28 @@
     </section>
 
 
-  </div>
+  </main>
 
 
-  <!-- =================================================
-       NO POPUP
-       ================================================= -->
+
+  <!-- =======================================================
+       IOS STYLE POPUP / BOTTOM SHEET
+       ======================================================= -->
 
   <div
-    class="popup-overlay"
+    class="overlay"
     id="popup"
   >
 
-    <div class="popup">
+    <div class="sheet">
+
+      <div class="handle"></div>
+
 
       <h3>
-        Hold on.
+        Wait a second.
       </h3>
+
 
       <p>
         Are you sure about that? 😭
@@ -1113,8 +1521,9 @@
         Maybe give this invitation another thought.
       </p>
 
+
       <button
-        class="primary"
+        class="button button-wine"
         onclick="closePopup()"
       >
         Okay, okay
@@ -1128,34 +1537,40 @@
 
   <script>
 
-    /* =====================================================
+    /* =========================================================
        VARIABLES
-       ===================================================== */
+       ========================================================= */
 
     let selectedActivities = [];
 
     let selectedDate = "";
+
     let selectedTime = "";
 
 
-    /* =====================================================
-       PAGE NAVIGATION
-       ===================================================== */
 
-    function goToPage(number) {
+    /* =========================================================
+       SCREEN NAVIGATION
+       ========================================================= */
+
+    function goToScreen(number) {
 
       document
-        .querySelectorAll(".page")
-        .forEach(page => {
+        .querySelectorAll(".screen")
+        .forEach(screen => {
 
-          page.classList.remove("active");
+          screen.classList.remove("active");
 
         });
 
 
-      document
-        .getElementById("page" + number)
-        .classList.add("active");
+      const nextScreen =
+        document.getElementById(
+          "screen" + number
+        );
+
+
+      nextScreen.classList.add("active");
 
 
       window.scrollTo({
@@ -1166,58 +1581,63 @@
     }
 
 
-    /* =====================================================
+
+    /* =========================================================
        DATE
-       ===================================================== */
+       ========================================================= */
 
     const dateInput =
       document.getElementById("date");
+
 
     const today =
       new Date()
         .toISOString()
         .split("T")[0];
 
+
     dateInput.min = today;
 
 
-    /* =====================================================
-       MOVING NO BUTTON
-       ===================================================== */
+
+    /* =========================================================
+       NO BUTTON
+       ========================================================= */
 
     const noButton =
       document.getElementById("noButton");
 
-    const noArea =
-      document.querySelector(".no-area");
+
+    const noContainer =
+      document.querySelector(".no-container");
 
 
     function moveNoButton() {
 
-      const maxX =
-        noArea.clientWidth -
-        noButton.offsetWidth;
+      /*
+        Move the button slightly instead of making
+        it impossible to interact with.
+      */
 
-      const maxY =
-        noArea.clientHeight -
-        noButton.offsetHeight;
-
-
-      const x =
-        Math.max(
-          0,
-          Math.random() * Math.max(maxX, 1)
-        );
-
-      const y =
-        Math.max(
-          0,
-          Math.random() * Math.max(maxY, 1)
-        );
+      const directions = [
+        "translateX(-8px)",
+        "translateX(8px)",
+        "translateY(-7px)",
+        "translateY(7px)",
+        "translateX(-5px) translateY(5px)",
+        "translateX(5px) translateY(-5px)"
+      ];
 
 
-      noButton.style.left = x + "px";
-      noButton.style.top = y + "px";
+      const random =
+        directions[
+          Math.floor(
+            Math.random() * directions.length
+          )
+        ];
+
+
+      noButton.style.transform = random;
 
     }
 
@@ -1255,9 +1675,10 @@
     );
 
 
-    /* =====================================================
+
+    /* =========================================================
        POPUP
-       ===================================================== */
+       ========================================================= */
 
     function closePopup() {
 
@@ -1265,19 +1686,23 @@
         .getElementById("popup")
         .classList.remove("show");
 
-      moveNoButton();
+
+      noButton.style.transform =
+        "translate(0, 0)";
 
     }
 
 
-    /* =====================================================
+
+    /* =========================================================
        DATE + TIME
-       ===================================================== */
+       ========================================================= */
 
     function continueToActivities() {
 
       selectedDate =
-        document.getElementById("date").value;
+        dateInput.value;
+
 
       selectedTime =
         document.getElementById("time").value;
@@ -1285,39 +1710,50 @@
 
       if (!selectedDate) {
 
-        alert("Please choose a date.");
+        alert(
+          "Please choose a date."
+        );
 
         return;
+
       }
 
 
       if (!selectedTime) {
 
-        alert("Please choose a time.");
+        alert(
+          "Please choose a time."
+        );
 
         return;
+
       }
 
 
-      goToPage(4);
+      goToScreen(4);
 
     }
 
 
-    /* =====================================================
-       ACTIVITIES
-       ===================================================== */
+
+    /* =========================================================
+       ACTIVITY SELECTION
+       ========================================================= */
 
     function toggleActivity(
       element,
       activity
     ) {
 
-      element.classList.toggle("selected");
+      element.classList.toggle(
+        "selected"
+      );
 
 
       if (
-        selectedActivities.includes(activity)
+        selectedActivities.includes(
+          activity
+        )
       ) {
 
         selectedActivities =
@@ -1327,16 +1763,19 @@
 
       } else {
 
-        selectedActivities.push(activity);
+        selectedActivities.push(
+          activity
+        );
 
       }
 
     }
 
 
-    /* =====================================================
+
+    /* =========================================================
        FINAL CONFIRMATION
-       ===================================================== */
+       ========================================================= */
 
     function finishInvitation() {
 
@@ -1349,6 +1788,7 @@
         );
 
         return;
+
       }
 
 
@@ -1370,10 +1810,14 @@
         );
 
 
-      const formattedTime =
+      const time =
         new Date(
           "2000-01-01T" + selectedTime
-        ).toLocaleTimeString(
+        );
+
+
+      const formattedTime =
+        time.toLocaleTimeString(
           undefined,
           {
             hour: "numeric",
@@ -1400,7 +1844,7 @@
         selectedActivities.join(", ");
 
 
-      goToPage(5);
+      goToScreen(5);
 
     }
 
