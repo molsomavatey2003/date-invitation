@@ -2,1166 +2,1409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>One Little Question ❤️</title>
+  <title>You're Invited</title>
 
-<style>
-/* =====================================================
-   MIDNIGHT LOVE — DATE INVITATION
-   ===================================================== */
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 
-:root {
-    --bg: #080609;
-    --bg-soft: #100a0e;
-    --wine: #7f1835;
-    --wine-light: #a62b4c;
-    --wine-dark: #4d1024;
-    --white: #fff8fa;
-    --muted: #b9a4aa;
-    --glass: rgba(255,255,255,0.055);
-    --border: rgba(255,255,255,0.10);
-}
+  <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    /* =====================================================
+       COLOR PALETTE
+       ===================================================== */
 
-html {
-    scroll-behavior: smooth;
-}
+    :root {
+      --cream: #F5EFE6;
+      --cream-dark: #E9DED0;
 
-body {
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at 50% 45%, rgba(127,24,53,.15), transparent 35%),
-        var(--bg);
-    color: var(--white);
-    font-family: "Inter", sans-serif;
-    overflow-x: hidden;
-}
+      --white: #FFFFFF;
 
-/* =====================================================
-   STARS
-   ===================================================== */
+      --black: #171516;
+      --black-soft: #292526;
 
-.stars,
-.stars::before,
-.stars::after {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-}
+      --wine: #6E1F35;
+      --wine-dark: #501426;
+      --wine-light: #8A354D;
 
-.stars {
-    background-image:
-        radial-gradient(1px 1px at 10% 20%, white, transparent),
-        radial-gradient(1px 1px at 20% 70%, white, transparent),
-        radial-gradient(1px 1px at 35% 30%, white, transparent),
-        radial-gradient(1px 1px at 48% 80%, white, transparent),
-        radial-gradient(1px 1px at 65% 15%, white, transparent),
-        radial-gradient(1px 1px at 78% 55%, white, transparent),
-        radial-gradient(1px 1px at 90% 25%, white, transparent),
-        radial-gradient(1px 1px at 88% 85%, white, transparent),
-        radial-gradient(1px 1px at 55% 45%, white, transparent),
-        radial-gradient(1px 1px at 28% 90%, white, transparent);
-    opacity: .55;
-    animation: starsMove 8s ease-in-out infinite alternate;
-}
+      --gray: #77706D;
+      --border: #DED4CA;
+    }
 
-.stars::before {
-    content: "";
-    background-image:
-        radial-gradient(1px 1px at 15% 45%, white, transparent),
-        radial-gradient(1px 1px at 42% 12%, white, transparent),
-        radial-gradient(1px 1px at 72% 32%, white, transparent),
-        radial-gradient(1px 1px at 95% 65%, white, transparent);
-    opacity: .35;
-    animation: twinkle 3s ease-in-out infinite alternate;
-}
 
-@keyframes starsMove {
-    from { transform: translateY(0); }
-    to { transform: translateY(-8px); }
-}
+    /* =====================================================
+       RESET
+       ===================================================== */
 
-@keyframes twinkle {
-    from { opacity: .15; }
-    to { opacity: .7; }
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* =====================================================
-   MOON
-   ===================================================== */
+    html {
+      scroll-behavior: smooth;
+    }
 
-.moon {
-    position: fixed;
-    top: 9%;
-    right: 9%;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: #fff8fa;
-    box-shadow:
-        0 0 25px rgba(255,255,255,.25),
-        0 0 70px rgba(255,255,255,.08);
-    opacity: .9;
-    z-index: 0;
-}
+    body {
+      min-height: 100vh;
 
-.moon::after {
-    content: "";
-    position: absolute;
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
-    background: var(--bg);
-    left: 25px;
-    top: -10px;
-}
+      font-family: "DM Sans", sans-serif;
 
-/* =====================================================
-   FLOATING HEARTS
-   ===================================================== */
+      color: var(--black);
 
-.hearts {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 1;
-}
+      background: var(--cream);
 
-.heart {
-    position: absolute;
-    bottom: -40px;
-    color: var(--wine-light);
-    opacity: 0;
-    font-size: 18px;
-    animation: floatHeart linear infinite;
-    text-shadow: 0 0 15px rgba(166,43,76,.8);
-}
+      overflow-x: hidden;
+    }
 
-.heart:nth-child(1) { left: 8%; animation-duration: 9s; animation-delay: 1s; }
-.heart:nth-child(2) { left: 22%; animation-duration: 12s; animation-delay: 4s; }
-.heart:nth-child(3) { left: 45%; animation-duration: 10s; animation-delay: 2s; }
-.heart:nth-child(4) { left: 67%; animation-duration: 13s; animation-delay: 5s; }
-.heart:nth-child(5) { left: 84%; animation-duration: 11s; animation-delay: 7s; }
 
-@keyframes floatHeart {
-    0% {
-        transform: translateY(0) scale(.7);
+    /* =====================================================
+       SUBTLE BACKGROUND
+       ===================================================== */
+
+    body::before {
+      content: "";
+
+      position: fixed;
+
+      width: 450px;
+      height: 450px;
+
+      border-radius: 50%;
+
+      background: rgba(110, 31, 53, 0.035);
+
+      top: -220px;
+      right: -180px;
+
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+
+      position: fixed;
+
+      width: 350px;
+      height: 350px;
+
+      border-radius: 50%;
+
+      background: rgba(0, 0, 0, 0.025);
+
+      bottom: -180px;
+      left: -150px;
+
+      pointer-events: none;
+    }
+
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
+    .container {
+
+      width: 100%;
+      min-height: 100vh;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 20px;
+    }
+
+
+    /* =====================================================
+       PAGE
+       ===================================================== */
+
+    .page {
+
+      width: 100%;
+      max-width: 520px;
+
+      display: none;
+
+      animation: fadeIn 0.45s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+
+      from {
         opacity: 0;
-    }
+        transform: translateY(12px);
+      }
 
-    15% {
-        opacity: .65;
-    }
-
-    85% {
-        opacity: .2;
-    }
-
-    100% {
-        transform: translateY(-110vh) scale(1.3);
-        opacity: 0;
-    }
-}
-
-/* =====================================================
-   PAGE
-   ===================================================== */
-
-.page {
-    min-height: 100vh;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 20px;
-    position: relative;
-    z-index: 2;
-}
-
-.page.active {
-    display: flex;
-    animation: pageIn .8s ease forwards;
-}
-
-@keyframes pageIn {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
+      to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
+      }
 
-/* =====================================================
-   MAIN CARD
-   ===================================================== */
-
-.card {
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
-    padding: 55px 35px;
-    border: 1px solid var(--border);
-    background: rgba(16,10,14,.72);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 32px;
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.55),
-        0 0 80px rgba(127,24,53,.08);
-}
-
-.eyebrow {
-    font-size: 11px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--wine-light);
-    margin-bottom: 25px;
-}
-
-.mini-heart {
-    font-size: 45px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 15px rgba(166,43,76,.8));
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-h1,
-h2 {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 500;
-}
-
-h1 {
-    font-size: clamp(42px, 8vw, 70px);
-    line-height: .95;
-    margin-bottom: 25px;
-}
-
-h2 {
-    font-size: clamp(35px, 7vw, 50px);
-    margin-bottom: 15px;
-}
-
-.subtitle {
-    max-width: 430px;
-    margin: auto;
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.8;
-}
-
-/* =====================================================
-   BUTTONS
-   ===================================================== */
-
-.buttons {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    position: relative;
-    min-height: 55px;
-}
-
-button {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    border-radius: 999px;
-    padding: 15px 30px;
-    font-size: 14px;
-    transition: .3s ease;
-}
-
-.yes-btn,
-.primary-btn {
-    color: white;
-    background: linear-gradient(135deg, var(--wine-light), var(--wine));
-    box-shadow: 0 0 25px rgba(127,24,53,.35);
-}
-
-.yes-btn:hover,
-.primary-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 35px rgba(166,43,76,.55);
-}
-
-.no-btn {
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.12);
-    color: #b7aeb1;
-    position: relative;
-}
-
-/* =====================================================
-   FORM
-   ===================================================== */
-
-.form-group {
-    text-align: left;
-    margin-top: 28px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 9px;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 1px;
-}
-
-input {
-    width: 100%;
-    padding: 16px;
-    color: white;
-    background: rgba(255,255,255,.055);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    outline: none;
-    font-family: inherit;
-}
-
-input:focus {
-    border-color: var(--wine-light);
-    box-shadow: 0 0 20px rgba(127,24,53,.2);
-}
-
-.primary-btn {
-    width: 100%;
-    margin-top: 25px;
-}
-
-/* =====================================================
-   ACTIVITIES
-   ===================================================== */
-
-.activities {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 13px;
-    margin-top: 30px;
-}
-
-.activity {
-    padding: 22px 14px;
-    border-radius: 20px;
-    background: rgba(255,255,255,.035);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: .3s ease;
-}
-
-.activity:hover {
-    transform: translateY(-4px);
-    border-color: rgba(166,43,76,.5);
-}
-
-.activity.selected {
-    background: rgba(127,24,53,.22);
-    border-color: var(--wine-light);
-    box-shadow: 0 0 25px rgba(127,24,53,.2);
-}
-
-.activity-icon {
-    font-size: 30px;
-    margin-bottom: 10px;
-}
-
-.activity-name {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.activity-description {
-    color: #8e7c82;
-    font-size: 11px;
-    line-height: 1.5;
-}
-
-/* =====================================================
-   POPUP
-   ===================================================== */
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(0,0,0,.78);
-    backdrop-filter: blur(10px);
-    z-index: 100;
-}
-
-.overlay.show {
-    display: flex;
-}
-
-.popup {
-    width: 100%;
-    max-width: 430px;
-    text-align: center;
-    padding: 40px 28px;
-    border-radius: 28px;
-    border: 1px solid rgba(166,43,76,.35);
-    background: #110a0e;
-    box-shadow: 0 0 70px rgba(127,24,53,.2);
-    animation: popupIn .4s ease;
-}
-
-@keyframes popupIn {
-    from {
-        opacity: 0;
-        transform: scale(.85) translateY(20px);
     }
 
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
 
-.popup-icon {
-    font-size: 55px;
-    margin-bottom: 15px;
-}
-
-.popup p {
-    color: var(--muted);
-    line-height: 1.8;
-    margin: 15px 0 25px;
-}
-
-.ok-btn {
-    width: 100%;
-    color: white;
-    background: linear-gradient(135deg, var(--wine-light), var(--wine));
-}
-
-/* =====================================================
-   FINAL
-   ===================================================== */
-
-.final-heart {
-    font-size: 75px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 25px rgba(166,43,76,.8));
-    animation: pulse 1.8s infinite;
-}
-
-.summary {
-    text-align: left;
-    margin: 30px 0;
-    padding: 22px;
-    border-radius: 20px;
-    background: rgba(127,24,53,.10);
-    border: 1px solid rgba(166,43,76,.18);
-    color: var(--muted);
-    line-height: 2;
-    font-size: 14px;
-}
-
-.summary strong {
-    color: var(--white);
-}
-
-.signature {
-    margin-top: 25px;
-    color: var(--wine-light);
-    font-family: "Cormorant Garamond", serif;
-    font-size: 22px;
-}
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media(max-width:600px) {
-
-    .moon {
-        width: 70px;
-        height: 70px;
-        right: 7%;
-    }
-
-    .moon::after {
-        width: 75px;
-        height: 75px;
-    }
+    /* =====================================================
+       CARD
+       ===================================================== */
 
     .card {
-        padding: 42px 22px;
-        border-radius: 26px;
+
+      background: var(--white);
+
+      padding: 55px 45px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 4px;
+
+      box-shadow:
+        0 20px 60px rgba(40, 25, 25, 0.07);
+
+      position: relative;
+
+      overflow: hidden;
     }
 
-    .activities {
-        grid-template-columns: 1fr;
+
+    /* Small wine line */
+
+    .card::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 4px;
+
+      background: var(--wine);
     }
 
-    .buttons {
-        gap: 10px;
+
+    /* =====================================================
+       SMALL LABEL
+       ===================================================== */
+
+    .eyebrow {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 22px;
+
+      color: var(--wine);
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      letter-spacing: 2.5px;
+
+      text-transform: uppercase;
+    }
+
+    .eyebrow::after {
+
+      content: "";
+
+      width: 35px;
+      height: 1px;
+
+      background: var(--wine);
+    }
+
+
+    /* =====================================================
+       TYPOGRAPHY
+       ===================================================== */
+
+    h1 {
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(42px, 10vw, 64px);
+
+      line-height: 1.02;
+
+      font-weight: 500;
+
+      letter-spacing: -1.5px;
+
+      margin-bottom: 20px;
+    }
+
+    h2 {
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(35px, 8vw, 48px);
+
+      line-height: 1.08;
+
+      font-weight: 500;
+
+      letter-spacing: -1px;
+
+      margin-bottom: 16px;
+    }
+
+    .italic {
+      font-style: italic;
+
+      color: var(--wine);
+    }
+
+    .description {
+
+      color: var(--gray);
+
+      font-size: 15px;
+
+      line-height: 1.8;
+
+      max-width: 390px;
+
+      margin-bottom: 32px;
+    }
+
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+
+    .button-row {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
     }
 
     button {
-        padding: 14px 22px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      border: none;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
     }
-}
-</style>
+
+    .primary {
+
+      padding: 14px 25px;
+
+      background: var(--black);
+
+      color: var(--white);
+
+      border: 1px solid var(--black);
+    }
+
+    .primary:hover {
+
+      background: var(--wine);
+
+      border-color: var(--wine);
+
+      transform: translateY(-2px);
+    }
+
+    .secondary {
+
+      padding: 14px 25px;
+
+      background: transparent;
+
+      color: var(--black);
+
+      border: 1px solid var(--border);
+    }
+
+    .secondary:hover {
+
+      border-color: var(--black);
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =====================================================
+       NO BUTTON
+       ===================================================== */
+
+    .no-area {
+
+      position: relative;
+
+      width: 90px;
+
+      height: 45px;
+    }
+
+    #noButton {
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       FORM
+       ===================================================== */
+
+    .form-section {
+
+      margin-bottom: 22px;
+    }
+
+    label {
+
+      display: block;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.5px;
+
+      margin-bottom: 8px;
+
+      text-transform: uppercase;
+    }
+
+    input {
+
+      width: 100%;
+
+      padding: 14px 15px;
+
+      background: var(--cream);
+
+      color: var(--black);
+
+      border: 1px solid var(--border);
+
+      border-radius: 2px;
+
+      outline: none;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 14px;
+
+      transition: border 0.2s ease;
+    }
+
+    input:focus {
+
+      border-color: var(--wine);
+    }
+
+
+    /* =====================================================
+       ACTIVITIES
+       ===================================================== */
+
+    .activities {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 10px;
+
+      margin: 25px 0 30px;
+    }
+
+    .activity {
+
+      padding: 17px 15px;
+
+      background: var(--cream);
+
+      border: 1px solid var(--border);
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        border 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .activity:hover {
+
+      transform: translateY(-2px);
+
+      border-color: var(--black);
+    }
+
+    .activity.selected {
+
+      background: var(--wine);
+
+      border-color: var(--wine);
+
+      color: var(--white);
+    }
+
+    .activity-icon {
+
+      font-size: 20px;
+
+      margin-bottom: 8px;
+    }
+
+    .activity-name {
+
+      font-size: 13px;
+
+      font-weight: 600;
+    }
+
+
+    /* =====================================================
+       POPUP
+       ===================================================== */
+
+    .popup-overlay {
+
+      position: fixed;
+
+      inset: 0;
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 20px;
+
+      background: rgba(23, 21, 22, 0.55);
+
+      z-index: 100;
+    }
+
+    .popup-overlay.show {
+      display: flex;
+    }
+
+    .popup {
+
+      width: 100%;
+
+      max-width: 390px;
+
+      background: var(--white);
+
+      padding: 35px;
+
+      border-top: 4px solid var(--wine);
+
+      box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+
+      animation: popupIn 0.25s ease;
+    }
+
+    @keyframes popupIn {
+
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    .popup h3 {
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 28px;
+
+      margin-bottom: 12px;
+    }
+
+    .popup p {
+
+      color: var(--gray);
+
+      font-size: 14px;
+
+      line-height: 1.7;
+
+      margin-bottom: 22px;
+    }
+
+
+    /* =====================================================
+       SUMMARY
+       ===================================================== */
+
+    .summary {
+
+      margin: 25px 0 30px;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .summary-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 14px 0;
+
+      border-bottom: 1px solid var(--border);
+
+      font-size: 13px;
+    }
+
+    .summary-label {
+
+      color: var(--gray);
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.5px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+    .summary-value {
+
+      text-align: right;
+
+      font-weight: 600;
+
+      max-width: 250px;
+    }
+
+
+    /* =====================================================
+       SUCCESS
+       ===================================================== */
+
+    .success-mark {
+
+      width: 55px;
+      height: 55px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      background: var(--wine);
+
+      color: var(--white);
+
+      font-size: 22px;
+
+      margin-bottom: 25px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .footer {
+
+      margin-top: 25px;
+
+      color: var(--gray);
+
+      font-size: 11px;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 600px) {
+
+      .container {
+        padding: 15px;
+      }
+
+      .card {
+        padding: 42px 25px;
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      h2 {
+        font-size: 38px;
+      }
+
+      .activities {
+        grid-template-columns: 1fr 1fr;
+      }
+
+    }
+
+    @media (max-width: 380px) {
+
+      .activities {
+        grid-template-columns: 1fr;
+      }
+
+      .button-row {
+        align-items: stretch;
+      }
+
+    }
+
+  </style>
 </head>
+
 
 <body>
 
-<!-- BACKGROUND -->
 
-<div class="stars"></div>
-<div class="moon"></div>
-
-<div class="hearts">
-    <div class="heart">♥</div>
-    <div class="heart">♥</div>
-    <div class="heart">♥</div>
-    <div class="heart">♥</div>
-    <div class="heart">♥</div>
-</div>
+  <div class="container">
 
 
-<!-- =====================================================
-     INTRO
-     ===================================================== -->
+    <!-- =================================================
+         PAGE 1 — INTRO
+         ================================================= -->
 
-<section class="page active" id="intro">
+    <section class="page active" id="page1">
 
-    <div class="card">
+      <div class="card">
 
         <div class="eyebrow">
-            A little something for you
-        </div>
-
-        <div class="mini-heart">
-            ♡
+          An invitation
         </div>
 
         <h1>
-            Hey...
+          Hey,<br>
+          I've got a little <span class="italic">idea.</span>
         </h1>
 
-        <p class="subtitle">
-            Stay for a minute.
-            <br>
-            There's something I want to ask you.
+        <p class="description">
+          Nothing complicated. Just a small invitation
+          and a chance to spend some time together.
         </p>
 
-        <button class="primary-btn"
-                onclick="showPage('question')"
-                style="margin-top:35px;">
-            Continue →
+        <button
+          class="primary"
+          onclick="goToPage(2)"
+        >
+          Let's see →
         </button>
 
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     QUESTION
-     ===================================================== -->
-
-<section class="page" id="question">
-
-    <div class="card">
-
-        <div class="eyebrow">
-            One little question
+        <div class="footer">
+          Made just for you
         </div>
 
-        <div class="mini-heart">
-            ♥
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PAGE 2 — QUESTION
+         ================================================= -->
+
+    <section class="page" id="page2">
+
+      <div class="card">
+
+        <div class="eyebrow">
+          The question
         </div>
 
         <h2>
-            Will you go on a date with me?
+          Want to <span class="italic">hang out?</span>
         </h2>
 
-        <p class="subtitle">
-            No pressure...
-            <br>
-            Okay, maybe just a little. 👀
+        <p class="description">
+          Coffee, food, a walk, a movie...
+          We can figure out the rest.
         </p>
 
-        <div class="buttons">
+        <div class="button-row">
 
-            <button class="yes-btn"
-                    onclick="showPage('date')">
-                YES ❤️
+          <button
+            class="primary"
+            onclick="goToPage(3)"
+          >
+            Sure, why not
+          </button>
+
+          <div class="no-area">
+
+            <button
+              id="noButton"
+              class="secondary"
+            >
+              No
             </button>
 
-            <button class="no-btn"
-                    id="noButton">
-                NO 😭
-            </button>
+          </div>
 
         </div>
 
-    </div>
+      </div>
 
-</section>
-
-
-<!-- =====================================================
-     REJECTION POPUP
-     ===================================================== -->
-
-<div class="overlay" id="rejectionPopup">
-
-    <div class="popup">
-
-        <div class="popup-icon">
-            🥺
-        </div>
-
-        <h2>
-            Try Again!
-        </h2>
-
-        <p>
-            Are you really rejecting this user?
-            <br><br>
-
-            They really want to see your face! 🥺
-            <br>
-
-            <strong>See you there! ❤️</strong>
-        </p>
-
-        <button class="ok-btn"
-                onclick="closePopup()">
-            OK, fine 😂
-        </button>
-
-    </div>
-
-</div>
+    </section>
 
 
-<!-- =====================================================
-     DATE & TIME
-     ===================================================== -->
+    <!-- =================================================
+         PAGE 3 — DATE & TIME
+         ================================================= -->
 
-<section class="page" id="date">
+    <section class="page" id="page3">
 
-    <div class="card">
+      <div class="card">
 
         <div class="eyebrow">
-            Let's make it happen
-        </div>
-
-        <div class="mini-heart">
-            🌙
+          Let's plan
         </div>
 
         <h2>
-            Pick a date.
+          Pick a <span class="italic">time.</span>
         </h2>
 
-        <p class="subtitle">
-            And maybe a time when I can steal
-            a few hours with you.
+        <p class="description">
+          Choose whatever works best for you.
         </p>
 
-        <div class="form-group">
 
-            <label>
-                DATE
-            </label>
+        <div class="form-section">
 
-            <input
-                type="date"
-                id="dateInput">
+          <label for="date">
+            Date
+          </label>
 
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                TIME
-            </label>
-
-            <input
-                type="time"
-                id="timeInput">
+          <input
+            type="date"
+            id="date"
+          >
 
         </div>
 
-        <button class="primary-btn"
-                onclick="goActivities()">
-            Continue →
+
+        <div class="form-section">
+
+          <label for="time">
+            Time
+          </label>
+
+          <input
+            type="time"
+            id="time"
+          >
+
+        </div>
+
+
+        <button
+          class="primary"
+          onclick="continueToActivities()"
+        >
+          Next →
         </button>
 
-    </div>
+      </div>
 
-</section>
+    </section>
 
 
-<!-- =====================================================
-     ACTIVITIES
-     ===================================================== -->
+    <!-- =================================================
+         PAGE 4 — ACTIVITIES
+         ================================================= -->
 
-<section class="page" id="activitiesPage">
+    <section class="page" id="page4">
 
-    <div class="card">
+      <div class="card">
 
         <div class="eyebrow">
-            Our little adventure
-        </div>
-
-        <div class="mini-heart">
-            ✦
+          The plan
         </div>
 
         <h2>
-            What should we do?
+          What are you <span class="italic">feeling?</span>
         </h2>
 
-        <p class="subtitle">
-            Pick whatever sounds nice.
-            <br>
-            You can choose more than one. ❤️
+        <p class="description">
+          Choose one or more. We'll make it work.
         </p>
+
 
         <div class="activities">
 
-            <div class="activity"
-                 onclick="selectActivity(this,'Cafe Talking')">
 
-                <div class="activity-icon">
-                    ☕
-                </div>
+          <div
+            class="activity"
+            onclick="toggleActivity(this, 'Coffee')"
+          >
 
-                <div class="activity-name">
-                    Cafe Talking
-                </div>
-
-                <div class="activity-description">
-                    Just you, me & way too much talking.
-                </div>
-
+            <div class="activity-icon">
+              ☕
             </div>
 
-
-            <div class="activity"
-                 onclick="selectActivity(this,'Walking Around Together')">
-
-                <div class="activity-icon">
-                    🚶
-                </div>
-
-                <div class="activity-name">
-                    Walking Together
-                </div>
-
-                <div class="activity-description">
-                    Let's walk somewhere and forget the time.
-                </div>
-
+            <div class="activity-name">
+              Coffee
             </div>
 
+          </div>
 
-            <div class="activity"
-                 onclick="selectActivity(this,'Dinner Together')">
 
-                <div class="activity-icon">
-                    🍷
-                </div>
+          <div
+            class="activity"
+            onclick="toggleActivity(this, 'Walk')"
+          >
 
-                <div class="activity-name">
-                    Dinner Together
-                </div>
-
-                <div class="activity-description">
-                    Good food. Good conversation.
-                </div>
-
+            <div class="activity-icon">
+              🚶
             </div>
 
-
-            <div class="activity"
-                 onclick="selectActivity(this,'Watch a Movie')">
-
-                <div class="activity-icon">
-                    🎬
-                </div>
-
-                <div class="activity-name">
-                    Watch a Movie
-                </div>
-
-                <div class="activity-description">
-                    Something cozy and quiet.
-                </div>
-
+            <div class="activity-name">
+              Take a walk
             </div>
 
+          </div>
 
-            <div class="activity"
-                 onclick="selectActivity(this,'Take Photos')">
 
-                <div class="activity-icon">
-                    📸
-                </div>
+          <div
+            class="activity"
+            onclick="toggleActivity(this, 'Food')"
+          >
 
-                <div class="activity-name">
-                    Take Photos
-                </div>
-
-                <div class="activity-description">
-                    We need something to remember this by.
-                </div>
-
+            <div class="activity-icon">
+              🍽
             </div>
 
-
-            <div class="activity"
-                 onclick="selectActivity(this,'Watch the Sunset')">
-
-                <div class="activity-icon">
-                    🌅
-                </div>
-
-                <div class="activity-name">
-                    Watch the Sunset
-                </div>
-
-                <div class="activity-description">
-                    Just us and the sky.
-                </div>
-
+            <div class="activity-name">
+              Get some food
             </div>
+
+          </div>
+
+
+          <div
+            class="activity"
+            onclick="toggleActivity(this, 'Movie')"
+          >
+
+            <div class="activity-icon">
+              🎬
+            </div>
+
+            <div class="activity-name">
+              Watch a movie
+            </div>
+
+          </div>
+
+
+          <div
+            class="activity"
+            onclick="toggleActivity(this, 'Photos')"
+          >
+
+            <div class="activity-icon">
+              📷
+            </div>
+
+            <div class="activity-name">
+              Take photos
+            </div>
+
+          </div>
+
+
+          <div
+            class="activity"
+            onclick="toggleActivity(this, 'Games')"
+          >
+
+            <div class="activity-icon">
+              🎮
+            </div>
+
+            <div class="activity-name">
+              Play games
+            </div>
+
+          </div>
+
 
         </div>
 
-        <button class="primary-btn"
-                onclick="confirmDate()">
-            Confirm Our Date ❤️
+
+        <button
+          class="primary"
+          onclick="finishInvitation()"
+        >
+          Confirm →
         </button>
 
-    </div>
+      </div>
 
-</section>
+    </section>
 
 
-<!-- =====================================================
-     FINAL
-     ===================================================== -->
+    <!-- =================================================
+         PAGE 5 — FINAL
+         ================================================= -->
 
-<section class="page" id="final">
+    <section class="page" id="page5">
 
-    <div class="card">
+      <div class="card">
 
-        <div class="final-heart">
-            ♥
+        <div class="success-mark">
+          ✓
         </div>
 
         <div class="eyebrow">
-            It's official
+          Confirmed
         </div>
 
         <h1>
-            It's a date.
+          It's a <span class="italic">plan.</span>
         </h1>
 
-        <p class="subtitle">
-            I knew we'd get here eventually. 😌
+        <p class="description">
+          Everything's set. See you there.
         </p>
+
 
         <div class="summary">
 
-            <strong>📅 Date</strong><br>
-            <span id="finalDate"></span>
+          <div class="summary-row">
 
-            <br>
+            <span class="summary-label">
+              Date
+            </span>
 
-            <strong>🕐 Time</strong><br>
-            <span id="finalTime"></span>
+            <span
+              class="summary-value"
+              id="finalDate"
+            >
+              —
+            </span>
 
-            <br>
+          </div>
 
-            <strong>♡ Plans</strong><br>
-            <span id="finalActivities"></span>
+
+          <div class="summary-row">
+
+            <span class="summary-label">
+              Time
+            </span>
+
+            <span
+              class="summary-value"
+              id="finalTime"
+            >
+              —
+            </span>
+
+          </div>
+
+
+          <div class="summary-row">
+
+            <span class="summary-label">
+              Plan
+            </span>
+
+            <span
+              class="summary-value"
+              id="finalActivities"
+            >
+              —
+            </span>
+
+          </div>
 
         </div>
 
-        <p class="subtitle">
-            See you there.
-            <br>
-            Don't be late. 👀
-        </p>
 
-        <div class="signature">
-            With love, ❤️
-        </div>
+        <button
+          class="secondary"
+          onclick="location.reload()"
+        >
+          Start over
+        </button>
+
+      </div>
+
+    </section>
+
+
+  </div>
+
+
+  <!-- =================================================
+       NO POPUP
+       ================================================= -->
+
+  <div
+    class="popup-overlay"
+    id="popup"
+  >
+
+    <div class="popup">
+
+      <h3>
+        Hold on.
+      </h3>
+
+      <p>
+        Are you sure about that? 😭
+        <br><br>
+        Maybe give this invitation another thought.
+      </p>
+
+      <button
+        class="primary"
+        onclick="closePopup()"
+      >
+        Okay, okay
+      </button>
 
     </div>
 
-</section>
+  </div>
 
 
-<script>
 
-/* =====================================================
-   VARIABLES
-   ===================================================== */
+  <script>
 
-const noButton = document.getElementById("noButton");
-const popup = document.getElementById("rejectionPopup");
+    /* =====================================================
+       VARIABLES
+       ===================================================== */
 
-let selectedActivities = [];
+    let selectedActivities = [];
+
+    let selectedDate = "";
+    let selectedTime = "";
 
 
-/* =====================================================
-   PAGE TRANSITION
-   ===================================================== */
+    /* =====================================================
+       PAGE NAVIGATION
+       ===================================================== */
 
-function showPage(pageId) {
+    function goToPage(number) {
 
-    document
+      document
         .querySelectorAll(".page")
         .forEach(page => {
-            page.classList.remove("active");
+
+          page.classList.remove("active");
+
         });
 
-    setTimeout(() => {
 
-        document
-            .getElementById(pageId)
-            .classList.add("active");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }, 80);
-}
+      document
+        .getElementById("page" + number)
+        .classList.add("active");
 
 
-/* =====================================================
-   NO BUTTON — PLAYFUL ESCAPE
-   ===================================================== */
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
 
-function moveNoButton() {
-
-    const x =
-        Math.random() * 220 - 110;
-
-    const y =
-        Math.random() * 100 - 50;
-
-    noButton.style.transform =
-        `translate(${x}px, ${y}px)`;
-}
+    }
 
 
-/* Desktop */
+    /* =====================================================
+       DATE
+       ===================================================== */
 
-noButton.addEventListener(
-    "mouseenter",
-    moveNoButton
-);
+    const dateInput =
+      document.getElementById("date");
+
+    const today =
+      new Date()
+        .toISOString()
+        .split("T")[0];
+
+    dateInput.min = today;
 
 
-/* Mobile */
+    /* =====================================================
+       MOVING NO BUTTON
+       ===================================================== */
 
-noButton.addEventListener(
-    "touchstart",
-    function(event) {
+    const noButton =
+      document.getElementById("noButton");
+
+    const noArea =
+      document.querySelector(".no-area");
+
+
+    function moveNoButton() {
+
+      const maxX =
+        noArea.clientWidth -
+        noButton.offsetWidth;
+
+      const maxY =
+        noArea.clientHeight -
+        noButton.offsetHeight;
+
+
+      const x =
+        Math.max(
+          0,
+          Math.random() * Math.max(maxX, 1)
+        );
+
+      const y =
+        Math.max(
+          0,
+          Math.random() * Math.max(maxY, 1)
+        );
+
+
+      noButton.style.left = x + "px";
+      noButton.style.top = y + "px";
+
+    }
+
+
+    noButton.addEventListener(
+      "mouseenter",
+      moveNoButton
+    );
+
+
+    noButton.addEventListener(
+      "touchstart",
+      function(event) {
 
         event.preventDefault();
 
         moveNoButton();
 
+      },
+      {
+        passive: false
+      }
+    );
+
+
+    noButton.addEventListener(
+      "click",
+      function() {
+
+        document
+          .getElementById("popup")
+          .classList.add("show");
+
+      }
+    );
+
+
+    /* =====================================================
+       POPUP
+       ===================================================== */
+
+    function closePopup() {
+
+      document
+        .getElementById("popup")
+        .classList.remove("show");
+
+      moveNoButton();
+
     }
-);
 
 
-/* =====================================================
-   NO BUTTON CLICK
-   ===================================================== */
+    /* =====================================================
+       DATE + TIME
+       ===================================================== */
 
-noButton.addEventListener(
-    "click",
-    function() {
+    function continueToActivities() {
 
-        popup.classList.add("show");
+      selectedDate =
+        document.getElementById("date").value;
 
-    }
-);
-
-
-/* =====================================================
-   POPUP
-   ===================================================== */
-
-function closePopup() {
-
-    popup.classList.remove("show");
-
-    setTimeout(() => {
-
-        showPage("date");
-
-    }, 250);
-
-}
+      selectedTime =
+        document.getElementById("time").value;
 
 
-/* =====================================================
-   DATE / TIME
-   ===================================================== */
+      if (!selectedDate) {
 
-function goActivities() {
-
-    const date =
-        document.getElementById("dateInput").value;
-
-    const time =
-        document.getElementById("timeInput").value;
-
-    if (!date || !time) {
-
-        alert(
-            "Choose a date and time first. 🥺"
-        );
+        alert("Please choose a date.");
 
         return;
+      }
+
+
+      if (!selectedTime) {
+
+        alert("Please choose a time.");
+
+        return;
+      }
+
+
+      goToPage(4);
 
     }
 
-    showPage("activitiesPage");
 
-}
+    /* =====================================================
+       ACTIVITIES
+       ===================================================== */
 
-
-/* =====================================================
-   ACTIVITIES
-   ===================================================== */
-
-function selectActivity(
-    element,
-    activity
-) {
-
-    element.classList.toggle("selected");
-
-    if (
-        selectedActivities.includes(activity)
+    function toggleActivity(
+      element,
+      activity
     ) {
 
-        selectedActivities =
-            selectedActivities.filter(
-                item => item !== activity
-            );
+      element.classList.toggle("selected");
 
-    } else {
+
+      if (
+        selectedActivities.includes(activity)
+      ) {
+
+        selectedActivities =
+          selectedActivities.filter(
+            item => item !== activity
+          );
+
+      } else {
 
         selectedActivities.push(activity);
 
+      }
+
     }
 
-}
 
+    /* =====================================================
+       FINAL CONFIRMATION
+       ===================================================== */
 
-/* =====================================================
-   CONFIRM DATE
-   ===================================================== */
+    function finishInvitation() {
 
-function confirmDate() {
-
-    if (
+      if (
         selectedActivities.length === 0
-    ) {
+      ) {
 
         alert(
-            "Choose at least one activity. ❤️"
+          "Choose at least one activity."
         );
 
         return;
-
-    }
-
-    const date =
-        document.getElementById("dateInput").value;
-
-    const time =
-        document.getElementById("timeInput").value;
+      }
 
 
-    const formattedDate =
+      const date =
         new Date(
-            date + "T00:00:00"
-        ).toLocaleDateString(
-            "en-US",
-            {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            }
+          selectedDate + "T00:00:00"
         );
 
 
-    document.getElementById(
-        "finalDate"
-    ).textContent = formattedDate;
+      const formattedDate =
+        date.toLocaleDateString(
+          undefined,
+          {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+          }
+        );
 
 
-    document.getElementById(
-        "finalTime"
-    ).textContent = time;
+      const formattedTime =
+        new Date(
+          "2000-01-01T" + selectedTime
+        ).toLocaleTimeString(
+          undefined,
+          {
+            hour: "numeric",
+            minute: "2-digit"
+          }
+        );
 
 
-    document.getElementById(
-        "finalActivities"
-    ).textContent =
-        selectedActivities.join(" • ");
+      document
+        .getElementById("finalDate")
+        .textContent =
+        formattedDate;
 
 
-    showPage("final");
+      document
+        .getElementById("finalTime")
+        .textContent =
+        formattedTime;
 
-}
+
+      document
+        .getElementById("finalActivities")
+        .textContent =
+        selectedActivities.join(", ");
 
 
-/* =====================================================
-   PREVENT PAST DATES
-   ===================================================== */
+      goToPage(5);
 
-const today =
-    new Date().toISOString().split("T")[0];
+    }
 
-document
-    .getElementById("dateInput")
-    .setAttribute("min", today);
-
-</script>
+  </script>
 
 </body>
 </html>
